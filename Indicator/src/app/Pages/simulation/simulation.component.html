@@ -7,11 +7,11 @@
       {{ onToggle() }}
     </button>
   </div>
-  <!-- <select class="mt-5 form-control col-sm-2 text-center" [(ngModel)]="selected">
+  <select class="mt-5 form-control col-sm-2 text-center" [(ngModel)]="selected">
     <option [value]="item" *ngFor="let item of month; let i = index">
       {{ item }}
     </option>
-  </select> -->
+  </select>
   <form *ngIf="isCheck" [formGroup]="simulationForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <input
@@ -37,4 +37,4 @@
   </div>
   <div class="card-footer text-muted">Mensuelle</div>
 </div>
-<button type="submit" class="btn btn-warning">Exporter en PDF</button>
+<!-- <button type="submit" class="btn btn-warning">Exporter en PDF</button> -->
