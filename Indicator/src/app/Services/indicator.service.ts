@@ -17,8 +17,8 @@ export class IndicatorService {
 
   PostIndicator(indicator: Indicator) {
     return this._http.post(this.baseURL + "indicator", indicator).subscribe(
-      () => {
-        console.log('Enregistrement terminé !');
+      (result) => {
+        console.log('Enregistrement terminé !', result);
       },
       (error) => {
         console.log('Erreur ! : ' + error);

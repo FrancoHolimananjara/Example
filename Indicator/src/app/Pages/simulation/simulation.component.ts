@@ -14,15 +14,21 @@ export class SimulationComponent implements OnInit {
   month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   year = [2021, 2022]
   selected = "";
+  currentYear = 0;
   indicatorSubscription: Subscription;
   allIndicators = [];
   realisation: any;
   rep: string;
+
+
+  //Auto
+  isCheck = false;
   constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService) { }
 
   ngOnInit(): void {
     this.initForm();
     this.selected = this.month[new Date().getMonth()];
+    this.currentYear = new Date().getFullYear();
     this.indicatorSubscription = this.indicatorService.GetAllIndicator().subscribe(
       (response: any[]) => {
         for (let i = 0; i < response.length; i++) {
@@ -63,6 +69,27 @@ export class SimulationComponent implements OnInit {
       } else if (this.realisation >= this.allIndicators[i]['indicatorBon']) {
         this.rep = 'Excellent'
       }
+    }
+  }
+  getColor() {
+    if (this.rep == 'Faible') {
+      return 'red';
+    } else if (this.rep == 'Moyen') {
+      return 'orange';
+    } else if (this.rep == 'Bon') {
+      return 'yellow';
+    } else if (this.rep == 'Excellent') {
+      return 'green'
+    }
+  }
+
+
+  onToggle() {
+    this.isCheck = !this.isCheck;
+    if (this.isCheck) {
+      return 'Auto'
+    } else {
+      return 'Manuel'
     }
   }
 

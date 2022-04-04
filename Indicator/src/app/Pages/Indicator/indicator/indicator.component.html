@@ -41,7 +41,7 @@
         type="button"
         class="btn btn-warning"
         (click)="onAddO_R()"
-        [disabled]="NbrO_R == 5"
+        [disabled]="NbrO_R == 4"
       >
         Ajouter
       </button>
@@ -62,27 +62,25 @@
   <table class="table table-striped text-center">
     <thead style="color: white; background-color: rgb(14, 14, 14)">
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">Indicateur</th>
         <th scope="col">Description</th>
         <th scope="col">Objectif</th>
         <th scope="col">Faible</th>
         <th scope="col">Moyen</th>
         <th scope="col">Bon</th>
-        <th scope="col">Excellent</th>
+        <th scope="col">Périmer</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let i of allIndicators; let x = index">
-        <td>{{ i["indicatorID"] }}</td>
         <td>{{ i["indicatorName"] }}</td>
         <td>{{ i["indicatorDesc"] }}</td>
         <td>{{ i["indicatorObjectif"] }} %</td>
         <td>{{ i["indicatorFaible"] }} %</td>
         <td>{{ i["indicatorMoyen"] }} %</td>
         <td>{{ i["indicatorBon"] }} %</td>
-        <td>{{ i["indicatorExcellent"] }} %</td>
+        <td>{{ i["isExpired"] }}</td>
         <td>
           <button class="btn btn-warning" (click)="onDelete(x)">
             Modifier

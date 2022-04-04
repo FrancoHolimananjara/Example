@@ -15,6 +15,7 @@ import { AuthService } from './Services/auth.service';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { SignUpComponent } from './Pages/sign-up/sign-up.component';
 import { SimulationComponent } from './Pages/simulation/simulation.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { SimulationComponent } from './Pages/simulation/simulation.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [IndicatorService, DataService, AuthService, AuthGuardService],
+  providers: [IndicatorService, DataService, AuthService, AuthGuardService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

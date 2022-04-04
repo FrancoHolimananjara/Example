@@ -18,6 +18,7 @@ export class BulletinComponent implements OnInit {
   Mois = [];
 
   ResponsePourcentage: any;
+  rep: string;
 
   constructor(private indicatorService: IndicatorService, private dataService: DataService) { }
 
@@ -52,6 +53,23 @@ export class BulletinComponent implements OnInit {
         this.ResponsePourcentage = response['%'];
       }
     )
+    this.response()
+  }
+  response() {
+    for (let i = 0; i < this.allIndicators.length; i++) {
+      console.log(this.allIndicators[i]);
+      if (this.ResponsePourcentage < this.allIndicators[i]['indicatorFaible']) {
+        console.log('Faible');
+
+        this.rep = 'Faible'
+      } else if (this.ResponsePourcentage >= this.allIndicators[i]['indicatorFaible'] && this.ResponsePourcentage < this.allIndicators[i]['indicatorMoyen']) {
+        this.rep = 'Moyen'
+      } else if (this.ResponsePourcentage >= this.allIndicators[i]['indicatorMoyen'] && this.ResponsePourcentage < this.allIndicators[i]['indicatorBon']) {
+        this.rep = 'Bon'
+      } else if (this.ResponsePourcentage >= this.allIndicators[i]['indicatorBon']) {
+        this.rep = 'Excellent'
+      }
+    }
   }
 
 }

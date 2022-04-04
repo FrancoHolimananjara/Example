@@ -19,10 +19,12 @@ app.post("/indicator",(req,res)=>{
     const iFaible = req.body.faible;
     const iMoyen = req.body.moyen;
     const iBon = req.body.bon;
-    const iExcellent = req.body.excellent;
+    const isExpired = req.body.isExpired;
+    const createdAt = req.body.createdAt;
+    console.log(iName , iDesc , iObj , iFaible , iMoyen , iBon , isExpired , createdAt);
 
-    let sql="INSERT INTO indicators (indicatorName,indicatorDesc,indicatorObjectif,indicatorFaible,indicatorMoyen,indicatorBon,indicatorExcellent) VALUES (?,?,?,?,?,?,?)";
-    DBconnexion.query(sql,[iName,iDesc,iObj,iFaible,iMoyen,iBon,iExcellent],(err,result)=>{
+    let sql="INSERT INTO indicators (indicatorName,indicatorDesc,indicatorObjectif,indicatorFaible,indicatorMoyen,indicatorBon,isExpired,createdAt) VALUES (?,?,?,?,?,?,?,?)";
+    DBconnexion.query(sql,[iName,iDesc,iObj,iFaible,iMoyen,iBon,isExpired,createdAt],(err,result)=>{
         if(!err){
             res.json(result)
         }else{

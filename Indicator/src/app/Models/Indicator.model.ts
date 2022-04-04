@@ -6,6 +6,7 @@ export class Indicator {
     public faible: number,
     public moyen: number,
     public bon: number,
-    public excellent: number
+    public createdAt: string,
+    public isExpired: false
   ) { }
 }

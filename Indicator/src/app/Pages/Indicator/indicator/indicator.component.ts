@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -14,10 +15,10 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   newIndicator: boolean = false;
   O_RIndex: number = 0;
   NbrO_R: number = 0;
-  PlaceHolder = ['Objectif', 'Faible (si <= )', 'Moyen (si entre Faible et Moyen)', 'Bon (si entre Moyen et Bon)', 'Excellent (si >= )']
+  PlaceHolder = ['Objectif', 'Faible (si <= )', 'Moyen (si entre Faible et Moyen)', 'Bon (si entre Moyen et Bon)']
 
   indicatorForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService) { }
+  constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService, private datePipe: DatePipe) { }
 
   indicators: Indicator[];
   indicatorSubscription: Subscription;
@@ -59,10 +60,13 @@ export class IndicatorComponent implements OnInit, OnDestroy {
       formValue['objectif_rating'][1],
       formValue['objectif_rating'][2],
       formValue['objectif_rating'][3],
-      formValue['objectif_rating'][4],
+      this.datePipe.transform(new Date(Date.now()), 'YYYY-MM-dd HH:mm:ss'),
+      false
     )
+    //
+
     this.indicatorService.PostIndicator(newIndicator)
-    this.indicatorService.addIndicator(newIndicator);
+    //this.indicatorService.addIndicator(newIndicator);
 
   }
 
