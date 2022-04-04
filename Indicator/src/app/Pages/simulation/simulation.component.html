@@ -1,0 +1,28 @@
+<div class="col-sm-3">
+  <h1>Current Date {{ selected }}</h1>
+  <!-- <select class="mt-5 form-control col-sm-2 text-center" [(ngModel)]="selected">
+    <option [value]="item" *ngFor="let item of month; let i = index">
+      {{ item }}
+    </option>
+  </select> -->
+  <form [formGroup]="simulationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Réalisation"
+        formControlName="realisation"
+      />
+    </div>
+  </form>
+</div>
+<div class="card text-center mt-5">
+  <div class="card-header">Bulletin</div>
+  <div class="card-body" *ngFor="let i of allIndicators">
+    <h5 class="card-title">{{ i["indicatorName"] }}</h5>
+    <p class="card-text">{{ i["indicatorDesc"] }}</p>
+    <h4>{{ realisation }} %</h4>
+    <div>{{ rep }}</div>
+  </div>
+  <div class="card-footer text-muted">Mensuelle</div>
+</div>

@@ -1,0 +1,96 @@
+<div class="col-sm-8 col-sm-offset-2">
+  <h3>Ajouter un indicateur</h3>
+  <form [formGroup]="indicatorForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="indicator">Nom de l'indicateur</label>
+      <input
+        type="text"
+        class="form-control"
+        id="indicator"
+        formControlName="indicator"
+        placeholder="Indicateur 1"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description de l'indicateur</label>
+      <textarea
+        id="description"
+        class="form-control"
+        cols="30"
+        rows="10"
+        formControlName="description"
+        placeholder="Description de l'indicateur"
+      ></textarea>
+    </div>
+    <div formArrayName="objectif_rating">
+      <label for="O_R">L'objectif et les *rating de l'indicateur</label>
+      <div
+        id="O_R"
+        class="form-group"
+        *ngFor="let O_R of getO_R().controls; let i = index"
+      >
+        <input
+          type="text"
+          [id]="i"
+          class="form-control"
+          [formControlName]="i"
+          [placeholder]="PlaceHolder[i] + ' % '"
+        />
+      </div>
+      <button
+        type="button"
+        class="btn btn-warning"
+        (click)="onAddO_R()"
+        [disabled]="NbrO_R == 5"
+      >
+        Ajouter
+      </button>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary mt-5"
+      [disabled]="indicatorForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+<ng-template #indicatorExist>
+  <input type="file" id="file" class="form-control-file" />
+</ng-template>
+<div class="container mt-5">
+  <table class="table table-striped text-center">
+    <thead style="color: white; background-color: rgb(14, 14, 14)">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Indicateur</th>
+        <th scope="col">Description</th>
+        <th scope="col">Objectif</th>
+        <th scope="col">Faible</th>
+        <th scope="col">Moyen</th>
+        <th scope="col">Bon</th>
+        <th scope="col">Excellent</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of allIndicators; let x = index">
+        <td>{{ i["indicatorID"] }}</td>
+        <td>{{ i["indicatorName"] }}</td>
+        <td>{{ i["indicatorDesc"] }}</td>
+        <td>{{ i["indicatorObjectif"] }} %</td>
+        <td>{{ i["indicatorFaible"] }} %</td>
+        <td>{{ i["indicatorMoyen"] }} %</td>
+        <td>{{ i["indicatorBon"] }} %</td>
+        <td>{{ i["indicatorExcellent"] }} %</td>
+        <td>
+          <button class="btn btn-warning" (click)="onDelete(x)">
+            Modifier
+          </button>
+          <button class="ml-2 btn btn-danger">Supprimer</button>
+        </td>
+      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+</div>

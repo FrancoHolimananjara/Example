@@ -1,0 +1,32 @@
+<div class="container">
+  <!-- <select name="mois" id="mois" class="mt-5 form-control col-sm-2 text-center">
+    <option
+      *ngFor="let m of Mois"
+      [value]="MoisString[m.Mois - 1]"
+      class="text-center"
+    >
+      {{ MoisString[m.Mois - 1] }}
+    </option>
+  </select> -->
+  <div>
+    <select
+      class="mt-5 form-control col-sm-2 text-center"
+      (change)="selectOption($event)"
+      [(ngModel)]="selected"
+    >
+      <option [value]="item" *ngFor="let item of MoisString; let i = index">
+        {{ item }}
+      </option>
+    </select>
+  </div>
+  <div class="card text-center mt-5">
+    <div class="card-header">Bulletin</div>
+    <div class="card-body" *ngFor="let i of allIndicators">
+      <h5 class="card-title">{{ i["indicatorName"] }}</h5>
+      <p class="card-text">{{ i["indicatorDesc"] }}</p>
+      <h4>{{ ResponsePourcentage }} %</h4>
+      <div>Go somewhere</div>
+    </div>
+    <div class="card-footer text-muted">Mensuelle</div>
+  </div>
+</div>
