@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IndicatorService } from 'src/app/Services/indicator.service';
+<<<<<<< HEAD
+=======
 import { DataService } from 'src/app/Services/data.service';
+>>>>>>> changementAlina
 
 @Component({
   selector: 'app-simulation',
@@ -24,6 +27,7 @@ export class SimulationComponent implements OnInit {
 
   //Auto
   isCheck = false;
+  btn: string = 'Manuel';
   constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService, private dataService: DataService) { }
 
   ngOnInit(): void {
@@ -90,21 +94,12 @@ export class SimulationComponent implements OnInit {
   onToggle() {
     this.isCheck = !this.isCheck;
     if (this.isCheck) {
-      const formValue = this.simulationForm.value;
-      this.realisation = formValue['realisation'];
-      this.date(this.month[new Date().getMonth()], new Date().getFullYear(), formValue['realisation'])
-      this.response();
-      return 'En auto'
+      return this.btn = 'Auto'
     } else {
-      // this.dataService.getPourcentageParMois(10).subscribe(
-      //   (value) => {
-      //     console.log(value);
-      //     this.realisation = value['%']
-      //     console.log(this.realisation);
-      //   }
-      // )
-      return 'En manuel'
+      return this.btn = 'Manuel'
     }
   }
 
+
 }
+
