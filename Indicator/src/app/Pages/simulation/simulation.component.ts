@@ -39,12 +39,6 @@ export class SimulationComponent implements OnInit {
       }
     )
 
-    // this.dataService.getPourcentageParMois(10).subscribe(
-    //   (value) => {
-    //     console.log('value', value['%']);
-
-    //   }
-    // )
   }
 
   initForm() {
@@ -110,9 +104,7 @@ export class SimulationComponent implements OnInit {
     }
   }
 
-  // PourReponse(val:boolean){
-  //   i
-  // }
+
 
 }
 
