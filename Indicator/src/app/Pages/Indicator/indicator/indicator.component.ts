@@ -16,7 +16,9 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   O_RIndex: number = 0;
   NbrO_R: number = 0;
   PlaceHolder = ['Objectif', 'Faible (si <= )', 'Moyen (si entre Faible et Moyen)', 'Bon (si entre Moyen et Bon)']
-
+  Comparaison = ['Au moins', 'Au plus', 'Moins de', 'Plus de'];
+  Ordre = ['Croissant', 'Décroissant']
+  Circuit = ['DAU', 'Rouge', 'Jaune', 'Vert']
   indicatorForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService, private datePipe: DatePipe) { }
 
@@ -24,6 +26,8 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   indicatorSubscription: Subscription;
 
   allIndicators = [];
+
+  isExpired: boolean;
 
   ngOnInit(): void {
     this.initForm();
@@ -84,6 +88,18 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   //Delete Indicator
   onDelete(id: number) {
     this.indicatorService.DeleteOneIndicator(id);
+  }
+
+  onChanged(value: boolean) {
+    this.isExpired = value;
+  }
+
+  disableIndicator() {
+    if (this.isExpired) {
+      return 'False';
+    } else {
+      return 'True';
+    }
   }
 
 }

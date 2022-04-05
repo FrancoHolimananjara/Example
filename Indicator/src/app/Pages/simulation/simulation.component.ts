@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IndicatorService } from 'src/app/Services/indicator.service';
+<<<<<<< HEAD
+=======
+import { DataService } from 'src/app/Services/data.service';
+>>>>>>> changementAlina
 
 @Component({
   selector: 'app-simulation',
@@ -23,11 +27,14 @@ export class SimulationComponent implements OnInit {
 
   //Auto
   isCheck = false;
-  constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService) { }
+  btn: string = 'Manuel';
+  constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.selected = this.month[new Date().getMonth()];
+
+
+    this.selected = this.month[new Date().getMonth()]; console.log(this.month.indexOf(this.selected));
     this.currentYear = new Date().getFullYear();
     this.indicatorSubscription = this.indicatorService.GetAllIndicator().subscribe(
       (response: any[]) => {
@@ -44,7 +51,7 @@ export class SimulationComponent implements OnInit {
     })
   }
 
-  date(mois: string, annee: number, realisation: number) {
+  date(mois: string, annee: number, realisation: any) {
     let data = new Map();
     data.set(mois + '/' + annee, realisation);
     console.log(data);
@@ -87,11 +94,12 @@ export class SimulationComponent implements OnInit {
   onToggle() {
     this.isCheck = !this.isCheck;
     if (this.isCheck) {
-      return 'Auto'
+      return this.btn = 'Auto'
     } else {
-      return 'Manuel'
+      return this.btn = 'Manuel'
     }
   }
 
 
 }
+
