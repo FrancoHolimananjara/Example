@@ -24,6 +24,7 @@ export class SimulationComponent implements OnInit {
 
   //Auto
   isCheck = false;
+  btn: string = 'Manuel';
   constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService, private dataService: DataService) { }
 
   ngOnInit(): void {
@@ -88,25 +89,13 @@ export class SimulationComponent implements OnInit {
 
 
   onToggle() {
-    return this.isCheck = !this.isCheck;
-  }
-
-  onResponse() {
+    this.isCheck = !this.isCheck;
     if (this.isCheck) {
-      this.onSubmit()
+      return this.btn = 'Auto'
     } else {
-      console.log('Auto');
-
-      // this.dataService.getPourcentageParMois(10).subscribe(
-      //   (value) => {
-      //     this.realisation = value['%']
-      //     console.log(this.realisation);
-
-      //   }
-      // )
-      // this.date(this.month[10], new Date().getFullYear(), this.realisation);
-      // this.response();
+      return this.btn = 'Manuel'
     }
   }
 
 }
+
