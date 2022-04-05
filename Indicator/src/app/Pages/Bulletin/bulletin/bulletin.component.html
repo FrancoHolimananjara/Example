@@ -29,4 +29,72 @@
     </div>
     <div class="card-footer text-muted">Mensuelle</div>
   </div>
+  <input type="button" value="Visualiser" class="btn btn-success mt-2" (click)="onShow()">
+  
+  <div style="width: 100%; height: auto; " class="mt-3" id="bulletin" *ngIf="isShow">
+    <div id="header">
+          <div class="row text-center">
+              <div class="col">jhfggdf</div>
+              <div class="col">fjkhsdh</div>
+              <div class="col"><img src="./../../../../assets/images/logo.png" alt=""></div>
+          </div>
+    </div>
+
+    <div id="body" class="position-relative">
+           <div class=" text-center border " style="width: 500px; height:auto;margin-left: 25%;" >
+             <p>CONTRAT DE PERFORMANCE</p>
+             <p>BUREAU:</p>
+            </div>
+
+            <div class="text-center">
+               <p>BULLETIN:</p>
+               <p>DATE DE CALCUL:</p>
+               <p>VERIFICATEUR:</p>
+               <p>IM:</p>
+            </div>
+
+            <div class="container">
+              <table class="table table-striped">
+                <thead class="thead-light">
+                  <th>Indicateurs</th>
+                  <th>Réalisation par rapport à l'objectif</th>
+                  <th>Point</th>
+                  <th>Coefficient</th>
+                  <th>Note finale</th>
+                  <th>Observation</th>
+                  <th>Rang</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of Bulletin">
+                    <td>{{i.Id}}</td>
+                    <td>{{i.Real}}%</td>
+                    <td>{{i.Point}}</td>
+                    <td>{{i.Coeff}}</td>
+                    <td>{{i.NoteFinale}}</td>
+                    <td>{{i.Obser}}</td>
+                    <td>{{i.Rang}}</td>
+                  </tr>
+                  <tr>
+                    <td>Realisation</td>
+                    <td>{{Realisation}}%</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{Notefi}}</td>
+                  </tr>
+                </tbody>
+               
+              </table>
+            </div>
+    </div>
+
+    <div id="footer" class="container">
+            <p><u>INTERPRETATION: </u></p>
+            <ul>
+              <li><u>Réalisation:</u> {{Notefi}} points,réference </li>
+              <li><u>Rang:</u></li>
+            </ul>
+    </div>
+ 
+  </div>
+  <button class="btn btn-success" (click)="SavePDF()" *ngIf="isShow">Download PDF</button>
 </div>

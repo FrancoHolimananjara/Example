@@ -16,6 +16,7 @@ import { AuthGuardService } from './Services/auth-guard.service';
 import { SignUpComponent } from './Pages/sign-up/sign-up.component';
 import { SimulationComponent } from './Pages/simulation/simulation.component';
 import { DatePipe } from '@angular/common';
+import { ExportDataComponent } from './Components/export-data/export-data.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { DatePipe } from '@angular/common';
     BulletinComponent,
     LoginComponent,
     SignUpComponent,
-    SimulationComponent
+    SimulationComponent,
+    ExportDataComponent
   ],
   imports: [
     BrowserModule,

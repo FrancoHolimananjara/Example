@@ -1,0 +1,23 @@
+<p>export-data works!</p>
+<div class="container" id="content" >
+    <h1>this Is work</h1>
+    <div>    
+        <table>    
+            <tr>    
+                <th>Id</th>    
+                <th>Name</th>    
+                <th>Salary</th>    
+            </tr>    
+            <tr *ngFor="let item of Data">    
+                <th>{{item.Id}}</th>    
+                <th>{{item.Name}}</th>    
+                <th>{{item.Salary}}</th>    
+            </tr>    
+        </table>    
+    </div>     
+    <input type="button" value="Download PDF" class="btn btn-success" (click)="SavePDF()">  
+</div>
+
+<button (click)="onSHOW()">Submit</button>
+    <p *ngIf="show">Bonjour!!!</p>
+
