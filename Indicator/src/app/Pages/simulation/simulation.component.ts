@@ -29,8 +29,6 @@ export class SimulationComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-
-
     this.selectedMonth = this.month[new Date().getMonth()];
     this.selectedYear = this.year[this.year.indexOf(new Date().getFullYear())];
     this.indicatorSubscription = this.indicatorService.GetAllIndicator().subscribe(
@@ -40,6 +38,13 @@ export class SimulationComponent implements OnInit {
         }
       }
     )
+
+    // this.dataService.getPourcentageParMois(10).subscribe(
+    //   (value) => {
+    //     console.log('value', value['%']);
+
+    //   }
+    // )
   }
 
   initForm() {
@@ -104,6 +109,10 @@ export class SimulationComponent implements OnInit {
       return 'En mode auto'
     }
   }
+
+  // PourReponse(val:boolean){
+  //   i
+  // }
 
 }
 

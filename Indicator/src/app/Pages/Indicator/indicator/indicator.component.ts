@@ -98,19 +98,18 @@ export class IndicatorComponent implements OnInit, OnDestroy {
 
   onChanged(isChecked: boolean) {
     if (isChecked) {
-      this.isExpired = isChecked;
+      this.isExpired = false;
+      // this.indicatorService.PutIndicator(14, this.isExpired).subscribe(
+      //   (response) => {
+      //     console.log('Response', response);
+
+      //   }
+      // )
     } else {
       this.isExpired = !this.isExpired
     }
   }
 
-  disableIndicator() {
-    if (this.isExpired) {
-      return 'False';
-    } else {
-      return 'True';
-    }
-  }
 
   onChange(name: string, isChecked: boolean) {
     if (isChecked) {

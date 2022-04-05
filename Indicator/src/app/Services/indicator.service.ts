@@ -28,6 +28,9 @@ export class IndicatorService {
   GetAllIndicator() {
     return this._http.get<any[]>(this.baseURL + "indicator");
   }
+  PutIndicator(id: number, isExpired: boolean) {
+    return this._http.put(this.baseURL + "indicator/" + id, !isExpired);
+  }
   DeleteOneIndicator(id: number) {
     return this._http.delete(this.baseURL + "indicator/" + id).subscribe(
       () => {

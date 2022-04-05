@@ -146,7 +146,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let i of allIndicators; let x = index">
+      <tr
+        *ngFor="let i of allIndicators; let x = index"
+        [ngClass]="{ 'text-muted': isExpired }"
+      >
         <td>
           {{ i["indicatorName"] }}
         </td>
@@ -157,16 +160,34 @@
         <td>{{ i["indicatorBon"] }} %</td>
         <td>{{ i["isExpired"] }}</td>
         <td>
-          <!-- <input
-            class="form-check-input"
-            #isExpired
-            id="isExpired"
-            type="checkbox"
-            [checked]="!isExpired"
-            (change)="onChanged(isExpired.checked)"
-          /> -->
-          <button class="btn btn-warning">Modifier</button>
-          <button class="ml-2 btn btn-danger">Supprimer</button>
+          <div class="row">
+            <div class="col">
+              <div class="custom-control custom-switch">
+                <input
+                  #enableIndicator
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="enableIndicator"
+                  [checked]="isExpired"
+                  (change)="onChanged(isExpired)"
+                />
+                <label class="custom-control-label" for="enableIndicator"
+                  >Switched to
+                  {{ !isExpired ? "Expired" : "Not expired" }}</label
+                >
+              </div>
+            </div>
+            <div class="col">
+              <button class="btn btn-warning" [disabled]="isExpired">
+                Modifier
+              </button>
+            </div>
+            <div class="col">
+              <button class="btn btn-danger" [disabled]="isExpired">
+                Supprimer
+              </button>
+            </div>
+          </div>
         </td>
       </tr>
       <tr></tr>
