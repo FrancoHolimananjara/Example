@@ -19,6 +19,12 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   Comparaison = ['Au moins', 'Au plus', 'Moins de', 'Plus de'];
   Ordre = ['Croissant', 'Décroissant']
   Circuit = ['DAU', 'Rouge', 'Jaune', 'Vert']
+
+  Choix = [{
+    'id': 0,
+    'name': 'Circuit'
+  }]
+  isChoice: boolean;
   indicatorForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService, private datePipe: DatePipe) { }
 
@@ -90,8 +96,12 @@ export class IndicatorComponent implements OnInit, OnDestroy {
     this.indicatorService.DeleteOneIndicator(id);
   }
 
-  onChanged(value: boolean) {
-    this.isExpired = value;
+  onChanged(isChecked: boolean) {
+    if (isChecked) {
+      this.isExpired = isChecked;
+    } else {
+      this.isExpired = !this.isExpired
+    }
   }
 
   disableIndicator() {
@@ -99,6 +109,15 @@ export class IndicatorComponent implements OnInit, OnDestroy {
       return 'False';
     } else {
       return 'True';
+    }
+  }
+
+  onChange(name: string, isChecked: boolean) {
+    if (isChecked) {
+      console.log(name);
+      this.isChoice = isChecked;
+    } else {
+      this.isChoice = !this.isChoice;
     }
   }
 
