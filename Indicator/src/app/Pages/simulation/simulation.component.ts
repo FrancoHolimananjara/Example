@@ -88,22 +88,24 @@ export class SimulationComponent implements OnInit {
 
 
   onToggle() {
-    this.isCheck = !this.isCheck;
+    return this.isCheck = !this.isCheck;
+  }
+
+  onResponse() {
     if (this.isCheck) {
-      const formValue = this.simulationForm.value;
-      this.realisation = formValue['realisation'];
-      this.date(this.month[new Date().getMonth()], new Date().getFullYear(), formValue['realisation'])
-      this.response();
-      return 'En auto'
+      this.onSubmit()
     } else {
+      console.log('Auto');
+
       // this.dataService.getPourcentageParMois(10).subscribe(
       //   (value) => {
-      //     console.log(value);
       //     this.realisation = value['%']
       //     console.log(this.realisation);
+
       //   }
       // )
-      return 'En manuel'
+      // this.date(this.month[10], new Date().getFullYear(), this.realisation);
+      // this.response();
     }
   }
 

@@ -4,7 +4,7 @@
   </h5>
   <div>
     <button class="btn btn-secondary" (click)="onToggle()">
-      {{ onToggle() }}
+      {{ onToggle() ? "En auto" : "En manuel" }}
     </button>
   </div>
   <select class="mt-5 form-control col-sm-2 text-center" [(ngModel)]="selected">
