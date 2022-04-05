@@ -124,7 +124,7 @@
       <tr
         *ngFor="let i of allIndicators; let x = index"
         [ngClass]="{ 'text-decoration-line-through': isExpired }"
-        [ngStyle]="{ color: isExpired ? '' : 'gray' }"
+        [ngStyle]="{ color: !isExpired ? 'gray' : '' }"
       >
         <td>{{ i["indicatorName"] }}</td>
         <td>{{ i["indicatorDesc"] }}</td>
@@ -142,9 +142,7 @@
             [checked]="isExpired"
             (change)="onChanged(isExpired.checked)"
           />
-          <button class="btn btn-warning" (click)="onDelete(x)">
-            Modifier
-          </button>
+          <button class="btn btn-warning">Modifier</button>
           <button class="ml-2 btn btn-danger">Supprimer</button>
         </td>
       </tr>
