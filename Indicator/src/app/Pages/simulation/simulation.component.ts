@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IndicatorService } from 'src/app/Services/indicator.service';
-<<<<<<< HEAD
-=======
+
+
 import { DataService } from 'src/app/Services/data.service';
->>>>>>> changementAlina
+
 
 @Component({
   selector: 'app-simulation',

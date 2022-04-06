@@ -23,7 +23,7 @@ app.post("/indicator",(req,res)=>{
     const createdAt = req.body.createdAt;
     console.log(iName , iDesc , iObj , iFaible , iMoyen , iBon , isExpired , createdAt);
 
-    let sql="INSERT INTO indicators (indicatorName,indicatorDesc,indicatorObjectif,indicatorFaible,indicatorMoyen,indicatorBon,isExpired,createdAt) VALUES (?,?,?,?,?,?,?,?)";
+    let sql="INSERT INTO indicators1 (indicatorName,indicatorDesc,indicatorObjectif,indicatorFaible,indicatorMoyen,indicatorBon,isExpired,createdAt) VALUES (?,?,?,?,?,?,?,?)";
     DBconnexion.query(sql,[iName,iDesc,iObj,iFaible,iMoyen,iBon,isExpired,createdAt],(err,result)=>{
         if(!err){
             res.json(result)
@@ -34,7 +34,7 @@ app.post("/indicator",(req,res)=>{
 });
 app.get("/indicator",(req,res)=>{
 
-    let sql="SELECT * FROM indicators";
+    let sql="SELECT * FROM indicators1";
     DBconnexion.query(sql,(err,result)=>{
         if(!err){
             res.json(result)
@@ -44,7 +44,7 @@ app.get("/indicator",(req,res)=>{
     })
 });
 app.delete("/indicator/:id",(req,res)=>{
-    let sql="DELETE FROM indicators WHERE indicatorID=?";
+    let sql="DELETE FROM indicators1 WHERE indicatorID=?";
     DBconnexion.query(sql,parseInt(req.params.id),(err,result)=>{
         if(!err){
             res.json(result)
