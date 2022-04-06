@@ -19,7 +19,7 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   Comparaison = ['Au moins', 'Au plus', 'Moins de', 'Plus de'];
   Ordre = ['Croissant', 'Décroissant']
   Circuit = ['DAU', 'Rouge', 'Jaune', 'Vert']
-
+  isValid = true;
   Choix = [{
     'id': 0,
     'name': 'Circuit'
@@ -118,6 +118,25 @@ export class IndicatorComponent implements OnInit, OnDestroy {
     } else {
       this.isChoice = !this.isChoice;
     }
+  }
+
+  checkValid(){
+    const val = this.indicatorForm.controls['indicator'];
+    
+
+    switch ((this.indicatorForm.controls['indicator'].status) || (this.indicatorForm.controls['description'].status) ) {
+      case 'VALID': this.isValid = true;
+         break;
+      case 'INVALID': this.isValid = false;
+         break;  
+        
+    
+      default:
+        break;
+    }
+   
+    console.log(typeof(val.status));
+    
   }
 
 }

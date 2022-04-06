@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IndicatorService } from 'src/app/Services/indicator.service';
-<<<<<<< HEAD
+
 
 
 import { DataService } from 'src/app/Services/data.service';
 
-=======
-import { DataService } from 'src/app/Services/data.service';
->>>>>>> 52d615918fd281d54599aa56c357a281fa014e7d
+
+
+
 
 @Component({
   selector: 'app-simulation',
