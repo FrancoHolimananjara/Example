@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IndicatorService } from 'src/app/Services/indicator.service';
+<<<<<<< HEAD
 
 
 import { DataService } from 'src/app/Services/data.service';
 
+=======
+import { DataService } from 'src/app/Services/data.service';
+>>>>>>> 52d615918fd281d54599aa56c357a281fa014e7d
 
 @Component({
   selector: 'app-simulation',
@@ -17,8 +21,8 @@ export class SimulationComponent implements OnInit {
   simulationForm: FormGroup;
   month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   year = [2021, 2022]
-  selected = "";
-  currentYear = 0;
+  selectedMonth = "";
+  selectedYear = 0;
   indicatorSubscription: Subscription;
   allIndicators = [];
   realisation: any;
@@ -26,16 +30,14 @@ export class SimulationComponent implements OnInit {
 
 
   //Auto
-  isCheck = false;
+  toggleTo: boolean;
   btn: string = 'Manuel';
   constructor(private formBuilder: FormBuilder, private indicatorService: IndicatorService, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.initForm();
-
-
-    this.selected = this.month[new Date().getMonth()]; console.log(this.month.indexOf(this.selected));
-    this.currentYear = new Date().getFullYear();
+    this.selectedMonth = this.month[new Date().getMonth()];
+    this.selectedYear = this.year[this.year.indexOf(new Date().getFullYear())];
     this.indicatorSubscription = this.indicatorService.GetAllIndicator().subscribe(
       (response: any[]) => {
         for (let i = 0; i < response.length; i++) {
@@ -43,6 +45,7 @@ export class SimulationComponent implements OnInit {
         }
       }
     )
+
   }
 
   initForm() {
@@ -90,15 +93,24 @@ export class SimulationComponent implements OnInit {
     }
   }
 
-
-  onToggle() {
-    this.isCheck = !this.isCheck;
-    if (this.isCheck) {
-      return this.btn = 'Auto'
+  onChange(isToggle: boolean) {
+    if (isToggle) {
+      console.log('Auto');
+      this.toggleTo = false;
     } else {
-      return this.btn = 'Manuel'
+      console.log('Manuel');
+      this.toggleTo = !this.toggleTo
     }
   }
+
+  retRealisation() {
+    if (this.toggleTo) {
+      return 'En mode manuel'
+    } else {
+      return 'En mode auto'
+    }
+  }
+
 
 
 }

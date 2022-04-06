@@ -53,6 +53,19 @@ app.delete("/indicator/:id",(req,res)=>{
         }
     })
 })
+app.put("/indicator/:id",(req,res)=>{
+    const dateUpdate = new Date(Date.now());
+    const isExpired = req.body.isExpired;
+    console.log(isExpired);
+    // let sql="UPDATE indicators SET isExpired=? , expiredAt=? WHERE indicatorID=?";
+    // DBconnexion.query(sql,[isExpired,dateFormat(dateUpdate,'YYYY-MM-dd HH:mm:ss'),parseInt(req.params.id)],(err,result)=>{
+    //     if(!err){
+    //         res.json(result)
+    //     }else{
+    //         res.json(err)
+    //     }
+    // })
+})
 
 //MOIS
 
