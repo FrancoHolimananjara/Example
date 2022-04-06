@@ -52,7 +52,7 @@
     <div class="card-body" *ngFor="let i of allIndicators">
       <h5 class="card-title">{{ i["indicatorName"] }}</h5>
       <p class="card-text">{{ i["indicatorDesc"] }}</p>
-      <h4>{{ retRealisation() }} %</h4>
+      <h4>{{ realisation }} %</h4>
       <div [ngStyle]="{ color: getColor() }">
         <div>
           {{ rep }}

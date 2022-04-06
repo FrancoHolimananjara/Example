@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Indicator } from 'src/app/Models/Indicator.model';
@@ -17,8 +17,38 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   NbrO_R: number = 0;
   PlaceHolder = ['Objectif', 'Faible (si <= )', 'Moyen (si entre Faible et Moyen)', 'Bon (si entre Moyen et Bon)']
   Comparaison = ['Au moins', 'Au plus', 'Moins de', 'Plus de'];
-  Ordre = ['Croissant', 'Décroissant']
-  Circuit = ['DAU', 'Rouge', 'Jaune', 'Vert']
+  Ordre = [
+    {
+      'id': 0,
+      'ordre': 'Croissant'
+    },
+    {
+      'id': 2,
+      'ordre': 'Décroissant'
+    },
+  ]
+  Circuit = [
+    {
+      'id': 0,
+      'choix': 'DAU',
+      'choisi': false
+    },
+    {
+      'id': 1,
+      'choix': 'Rouge',
+      'choisi': false
+    },
+    {
+      'id': 2,
+      'choix': 'Vert',
+      'choisi': false
+    },
+    {
+      'id': 3,
+      'choix': 'Jaune',
+      'choisi': false
+    },
+  ]
 
   Choix = [{
     'id': 0,
@@ -55,28 +85,31 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   initForm() {
     this.indicatorForm = this.formBuilder.group({
       'indicator': ['', Validators.required],
-      'description': ['', Validators.required],
+      'description': ['', Validators.required, Validators.maxLength(5)],
       'objectif_rating': this.formBuilder.array([])
     });
   }
 
   onSubmit() {
-    this.newIndicator = true;
-    const formValue = this.indicatorForm.value;
-    const newIndicator = new Indicator(
-      formValue['indicator'],
-      formValue['description'],
-      formValue['objectif_rating'][0],
-      formValue['objectif_rating'][1],
-      formValue['objectif_rating'][2],
-      formValue['objectif_rating'][3],
-      this.datePipe.transform(new Date(Date.now()), 'YYYY-MM-dd HH:mm:ss'),
-      false
-    )
-    //
+    if (confirm("Eny ary tompoko")) {
+      this.newIndicator = true;
+      const formValue = this.indicatorForm.value;
+      const newIndicator = new Indicator(
+        formValue['indicator'],
+        formValue['description'],
+        formValue['objectif_rating'][0],
+        formValue['objectif_rating'][1],
+        formValue['objectif_rating'][2],
+        formValue['objectif_rating'][3],
+        this.datePipe.transform(new Date(Date.now()), 'YYYY-MM-dd HH:mm:ss'),
+        false
+      )
+      //
 
-    this.indicatorService.PostIndicator(newIndicator)
-    //this.indicatorService.addIndicator(newIndicator);
+      this.indicatorService.PostIndicator(newIndicator)
+      //this.indicatorService.addIndicator(newIndicator);
+
+    }
 
   }
 
@@ -99,12 +132,6 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   onChanged(isChecked: boolean) {
     if (isChecked) {
       this.isExpired = false;
-      // this.indicatorService.PutIndicator(14, this.isExpired).subscribe(
-      //   (response) => {
-      //     console.log('Response', response);
-
-      //   }
-      // )
     } else {
       this.isExpired = !this.isExpired
     }
@@ -119,5 +146,9 @@ export class IndicatorComponent implements OnInit, OnDestroy {
       this.isChoice = !this.isChoice;
     }
   }
-
+  onChangeChoixCircuit(circuitChoisi: string, isChecked: boolean) {
+    if (isChecked) {
+      console.log(circuitChoisi);
+    }
+  }
 }
