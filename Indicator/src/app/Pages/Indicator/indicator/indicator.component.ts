@@ -17,6 +17,7 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   NbrO_R: number = 0;
   PlaceHolder = ['Objectif', 'Faible (si <= )', 'Moyen (si entre Faible et Moyen)', 'Bon (si entre Moyen et Bon)']
   Comparaison = ['Au moins', 'Au plus', 'Moins de', 'Plus de'];
+
   Ordre = [
     {
       'id': 0,
@@ -49,6 +50,10 @@ export class IndicatorComponent implements OnInit, OnDestroy {
       'choisi': false
     },
   ]
+
+
+ 
+  isValid = true;
 
   Choix = [{
     'id': 0,
@@ -146,9 +151,32 @@ export class IndicatorComponent implements OnInit, OnDestroy {
       this.isChoice = !this.isChoice;
     }
   }
+
   onChangeChoixCircuit(circuitChoisi: string, isChecked: boolean) {
     if (isChecked) {
       console.log(circuitChoisi);
     }
   }
+
+
+  checkValid(){
+    const val = this.indicatorForm.controls['indicator'];
+    
+
+    switch ((this.indicatorForm.controls['indicator'].status) || (this.indicatorForm.controls['description'].status) ) {
+      case 'VALID': this.isValid = true;
+         break;
+      case 'INVALID': this.isValid = false;
+         break;  
+        
+    
+      default:
+        break;
+    }
+   
+    console.log(typeof(val.status));
+    
+  }
+
+
 }

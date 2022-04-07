@@ -1,3 +1,4 @@
+<!-- Ajout indicateur -->
 <div class="col-sm-8 col-sm-offset-2">
   <h3>Ajouter un indicateur</h3>
   <form [formGroup]="indicatorForm" (ngSubmit)="onSubmit()">
@@ -5,27 +6,20 @@
       <label for="indicator">Nom de l'indicateur</label>
       <input
         type="text"
-        class="form-control"
+      
         id="indicator"
         formControlName="indicator"
         placeholder="Indicateur 1"
+        [ngClass]="{'form-control': true,
+        'form-control is-invalid': !isValid
+                    }"
       />
     </div>
+
+    <!-- Ajout description indicateur -->
     <div class="form-row align-items-center">
       <div class="col">
-        <div class="form-group">
-          <label for="description">Description de l'indicateur</label>
-          <textarea
-            id="description"
-            class="form-control"
-            cols="30"
-            rows="10"
-            formControlName="description"
-            placeholder="Description de l'indicateur"
-          ></textarea>
-        </div>
-      </div>
-      <div class="col">
+        
         <div class="form-row align-items-center">
           <div class="col">
             <div *ngFor="let choix of Choix">
@@ -55,6 +49,8 @@
             </div>
           </div>
         </div>
+
+        <!-- Comparaison -->
         <div class="form-row align-items-center">
           <div class="col">
             <div class="form-group">
@@ -69,6 +65,7 @@
               </select>
             </div>
           </div>
+
           <div class="col">
             <input
               type="text"
@@ -87,17 +84,10 @@
             </select>
           </div> -->
         </div>
+
+        <!-- Ordre -->
         <div class="row">
           <div class="col">
-            <!-- <select
-              class="mt-5 form-control text-center"
-              [disabled]="!isChoice"
-            >
-              <option value="">Par ordre</option>
-              <option [value]="o" *ngFor="let o of Ordre">
-                {{ o }}
-              </option>
-            </select> -->
             <div class="form-check" *ngFor="let o of Ordre; let i = index">
               <input
                 class="form-check-input"
@@ -115,10 +105,29 @@
           </div>
         </div>
       </div>
+
+      <!-- Choix circuit -->
+      <div class="col">
+        <div class="form-group">
+          <label for="description">Description de l'indicateur</label>
+          <textarea
+            id="description"
+          
+            cols="30"
+            rows="10"
+            formControlName="description"
+            placeholder="Ne pas dépasser les 255 caractères"
+            [ngClass]="{'form-control': true,
+            'form-control is-invalid': !isValid}"
+          ></textarea>
+        </div>
+        
+      </div>
     </div>
 
+    <!-- Objectif et observation -->
     <div formArrayName="objectif_rating">
-      <label for="O_R">L'objectif et les observation de l'indicateur</label>
+      <label for="O_R">L'objectif et les observation de l'indicateur </label>
       <div
         id="O_R"
         class="form-group"
@@ -134,17 +143,21 @@
       </div>
       <button
         type="button"
-        class="btn btn-warning"
+        class="btn btn-info ml-2"
         (click)="onAddO_R()"
         [disabled]="NbrO_R == 4"
-      >
-        Ajouter
+        
+      > Ajouter
+      <i class="bi bi-plus-lg" ></i>
       </button>
+      
     </div>
+
+    <!-- Submit -->
     <button
       type="submit"
       class="btn btn-primary mt-5"
-      [disabled]="indicatorForm.invalid"
+     (click)="checkValid()"
     >
       Submit
     </button>
@@ -153,6 +166,8 @@
 <ng-template #indicatorExist>
   <input type="file" id="file" class="form-control-file" />
 </ng-template>
+
+<!-- Affichage indicateur -->
 <div class="container mt-5">
   <table class="table table-striped text-center">
     <thead style="color: white; background-color: rgb(14, 14, 14)">
@@ -163,7 +178,7 @@
         <th scope="col">Faible</th>
         <th scope="col">Moyen</th>
         <th scope="col">Bon</th>
-        <th scope="col">Périmé</th>
+        <th scope="col">Coefficient</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -180,7 +195,7 @@
         <td>{{ i["indicatorFaible"] }} %</td>
         <td>{{ i["indicatorMoyen"] }} %</td>
         <td>{{ i["indicatorBon"] }} %</td>
-        <td>{{ i["isExpired"] }}</td>
+        <td>2</td>
         <td>
           <div class="row">
             <div class="col">
